@@ -1,0 +1,33 @@
+server:
+  port: 8889
+
+spring:
+  application:
+    name: master-slave-switch
+  datasource:
+    master:
+      name: master
+      url: jdbc:mysql://127.0.0.1:3306/master?useUnicode=true&characterEncoding=utf-8
+      username: root
+      password: abc123
+      # 使用druid数据源
+      type: com.alibaba.druid.pool.DruidDataSource
+      druid:
+        initial-size: 1
+        min-idle: 8
+        max-active: 30
+        max-wait: 20000
+        validation-query: SELECT 1
+    slave:
+      name: slave
+      url: jdbc:mysql://127.0.0.1:3306/slave?useUnicode=true&characterEncoding=utf-8
+      username: root
+      password: abc123
+      # 使用druid数据源
+      type: com.alibaba.druid.pool.DruidDataSource
+      druid:
+        initial-size: 1
+        min-idle: 8
+        max-active: 30
+        max-wait: 20000
+        validation-query: SELECT 1
